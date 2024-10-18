@@ -30,7 +30,7 @@ class ServerFailure extends Failuer {
   }
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(errMessage: response["error"]["message"]);
+      return ServerFailure(errMessage: response["status_message"]);
     } else if (statusCode == 404) {
       return ServerFailure(errMessage: "Requset Not Found , Please try later");
     } else if (statusCode == 500) {
