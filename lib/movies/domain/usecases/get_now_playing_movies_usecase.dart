@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:movia_app/core/error/failuer.dart';
-import 'package:movia_app/movies/data/models/movie_model.dart';
+
 import 'package:movia_app/movies/domain/entities/movie.dart';
 import 'package:movia_app/movies/domain/repository/base_movie_repository.dart';
 

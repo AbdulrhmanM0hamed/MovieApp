@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movia_app/movies/presentation/screens/movie_screen.dart';
+import 'package:movia_app/core/services/services_locater.dart';
+import 'package:movia_app/movies/presentation/screens/movies_screen.dart';
 
 void main() {
+  ServicesLocater().init() ; 
+
   runApp(const MyApp());
 }
 
@@ -12,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: MovieScreen(),
+      home: MainMoviesScreen(),
     );
   }
 }
