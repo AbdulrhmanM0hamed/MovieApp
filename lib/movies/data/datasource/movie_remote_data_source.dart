@@ -38,7 +38,6 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
     try {
       var response = await Dio().get(ApiConstant.popularMovie);
       if (response.data['results'] != null) {
-        // Properly map response data to a list of MovieModel
         List<MovieModel> movies = (response.data['results'] as List)
             .map((item) => MovieModel.fromJson(item))
             .toList();

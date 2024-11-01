@@ -6,7 +6,7 @@ import 'package:movia_app/movies/domain/entities/movie.dart';
 import 'package:movia_app/movies/domain/repository/base_movie_repository.dart';
 
 class MoviesRepository extends BaseMovieRepository {
-
+ 
   final BaseMovieRemoteDataSource baseMovieRemoteDataSource;
 
   MoviesRepository({required this.baseMovieRemoteDataSource});

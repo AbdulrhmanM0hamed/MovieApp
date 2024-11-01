@@ -3,7 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:movia_app/movies/data/datasource/movie_remote_data_source.dart';
 import 'package:movia_app/movies/data/repository/movies_repository.dart';
 import 'package:movia_app/movies/domain/repository/base_movie_repository.dart';
-import 'package:movia_app/movies/presentation/controller/bloc/movies_bloc.dart';
+import 'package:movia_app/movies/presentation/controller/bloc/moivess_bloc.dart';
 
 import '../../movies/domain/usecases/get_now_playing_movies_usecase.dart';
 
@@ -13,7 +13,9 @@ class ServicesLocater {
 
   void init(){
 
-     sl.registerFactory( () => MoviesBloc(sl())) ;
+    
+     sl.registerFactory( () => MoivessBloc(sl())) ;
+
 
     // Use Case
 
