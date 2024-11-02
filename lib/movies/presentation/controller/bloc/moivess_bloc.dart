@@ -2,26 +2,50 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movia_app/movies/domain/entities/movie.dart';
 import 'package:movia_app/movies/domain/usecases/get_now_playing_movies_usecase.dart';
+import 'package:movia_app/movies/domain/usecases/get_popular_movies_usecase.dart';
+import 'package:movia_app/movies/domain/usecases/get_top_rated_movies_usecase.dart';
+import 'package:movia_app/movies/presentation/controller/bloc/moivess_state.dart';
 
 part 'moivess_event.dart';
-part 'moivess_state.dart';
 
 class MoivessBloc extends Bloc<MoivessEvent, MoivessState> {
-  final GetNowPlayingMoviesUsecase getNowPlayingMoviesUsecase ;
-  MoivessBloc(this.getNowPlayingMoviesUsecase) : super( MoivesNowPlayingInitial()) {
-    on<MoivessEvent>((event, emit) async {
+  final GetNowPlayingMoviesUsecase getNowPlayingMoviesUsecase;
+  final GetPopularMoviesUsecase getPopularMoviesUsecase;
+  final GetTopRatedMoviesUsecase getTopRatedMoviesUsecase;
 
-     final result = await getNowPlayingMoviesUsecase.excute() ; 
-       
-       result.fold((failure){
-           
-           emit(MoivessNowPlayingFailure(errMessage: failure.errMessage));
-       }, (movies){
+  MoivessBloc(
+    this.getNowPlayingMoviesUsecase,
+    this.getPopularMoviesUsecase,
+    this.getTopRatedMoviesUsecase,
+  ) : super(MoivesInitial()) {
+    // Now Playing Movies
+    on<GetNowPlayingMoviessEvent>((event, emit) async {
+      emit(MoivessNowPlayingLoading());
+      final result = await getNowPlayingMoviesUsecase.excute();
+      result.fold(
+        (failure) => emit(MoivessNowPlayingFailure(errorMessage: failure.errMessage)),
+        (movies) => emit(MoivessNowPlayingSuccess(movies: movies)),
+      );
+    });
 
-        emit(MoivessNowPlayingSuccess(movie: movies)) ;
+    // Popular Movies
+    on<GetNowPopularMoviessEvent>((event, emit) async {
+      emit(MoivessPopularLoading());
+      final result = await getPopularMoviesUsecase.excute();
+      result.fold(
+        (failure) => emit(MoivessPopularFailure(errorMessage: failure.errMessage)),
+        (movies) => emit(MoivessPopularSuccess(movies: movies)),
+      );
+    });
 
-       })
-;        
+    // Top Rated Movies
+    on<GetNowTopRatedMoviessEvent>((event, emit) async {
+      emit(MoivessTopRatedLoading());
+      final result = await getTopRatedMoviesUsecase.excute();
+      result.fold(
+        (failure) => emit(MoivessTopRatedFailure(errorMessage: failure.errMessage)),
+        (movies) => emit(MoivessTopRatedSuccess(movies: movies)),
+      );
     });
   }
 }

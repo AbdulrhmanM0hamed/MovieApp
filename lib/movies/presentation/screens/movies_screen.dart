@@ -11,25 +11,36 @@ class MainMoviesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<MoivessBloc>()..add(GetNowPlayingMoviessEvent()),
-      child: Scaffold(
-        backgroundColor: Colors.grey.shade900,
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const NowPlayingMovie(),
-              const SizedBox(height: 8),
-              PopularMoviesSection(
+    return Scaffold(
+      backgroundColor: Colors.grey.shade900,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // BlocProvider for NowPlayingMovies
+            BlocProvider(
+              create: (context) => sl<MoivessBloc>()..add(GetNowPlayingMoviessEvent()),
+              child: const NowPlayingMovie(),
+            ),
+            const SizedBox(height: 8),
+
+            // BlocProvider for PopularMovies
+            BlocProvider(
+              create: (context) => sl<MoivessBloc>()..add(GetNowPopularMoviessEvent()),
+              child: PopularMoviesSection(
                 onSeeAll: () {},
               ),
-              TopRatedMoviesSection(
+            ),
+
+            // BlocProvider for TopRatedMovies
+            BlocProvider(
+              create: (context) => sl<MoivessBloc>()..add(GetNowTopRatedMoviessEvent()),
+              child: TopRatedMoviesSection(
                 onSeeAll: () {},
               ),
-              const SizedBox(height: 50.0),
-            ],
-          ),
+            ),
+            const SizedBox(height: 50.0),
+          ],
         ),
       ),
     );
