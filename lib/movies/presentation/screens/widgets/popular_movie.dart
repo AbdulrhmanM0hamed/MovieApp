@@ -18,7 +18,6 @@ class PopularMoviesSection extends StatelessWidget {
 
       builder: (context, state) {
 
-       print("BlocBuilder Popular");
 
         if (state is MoivessPopularSuccess) {
   return Column(

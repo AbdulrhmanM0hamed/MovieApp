@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movia_app/core/network/api_constant.dart';
-import 'package:movia_app/core/utils/dummy.dart';
 import 'package:movia_app/movies/presentation/controller/bloc/moivess_bloc.dart';
 import 'package:movia_app/movies/presentation/controller/bloc/moivess_state.dart';
 
@@ -16,7 +15,6 @@ class TopRatedMoviesSection extends StatelessWidget {
        buildWhen: (previous, current) => previous is MoivessTopRatedSuccess != current is MoivessTopRatedSuccess,
 
       builder: (context, state) {
-        print("BlocBuilder TopRated") ;
         if (state is MoivessTopRatedSuccess) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,

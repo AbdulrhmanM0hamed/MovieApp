@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movia_app/core/network/api_constant.dart';
-
 import 'package:movia_app/movies/presentation/controller/bloc/moivess_bloc.dart';
 import 'package:movia_app/movies/presentation/controller/bloc/moivess_state.dart';
 
@@ -14,7 +13,6 @@ class NowPlayingMovie extends StatelessWidget {
       buildWhen: (previous, current) => previous is MoivessNowPlayingSuccess != current is MoivessNowPlayingSuccess,
       builder: (context, state) {
         
-        print("BlocBuilder NowPlaying");
         if (state is MoivessNowPlayingSuccess) {
           return Container(
             height: 400,
