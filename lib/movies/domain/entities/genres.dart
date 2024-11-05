@@ -4,7 +4,7 @@ class Genres extends Equatable {
   final int id ;
   final String name;
 
-  Genres({required this.id, required this.name});
+  const Genres({required this.id, required this.name});
   
   @override
   List<Object?> get props => [name , id] ;

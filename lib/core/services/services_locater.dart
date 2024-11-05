@@ -1,8 +1,12 @@
 
 import 'package:get_it/get_it.dart';
+import 'package:movia_app/movies/data/datasource/details_remote_data_source.dart';
 import 'package:movia_app/movies/data/datasource/movie_remote_data_source.dart';
+import 'package:movia_app/movies/data/repository/details_repository.dart';
 import 'package:movia_app/movies/data/repository/movies_repository.dart';
+import 'package:movia_app/movies/domain/repository/base_movie_details.dart';
 import 'package:movia_app/movies/domain/repository/base_movie_repository.dart';
+import 'package:movia_app/movies/domain/usecases/get_movie_detials.dart';
 import 'package:movia_app/movies/domain/usecases/get_popular_movies_usecase.dart';
 import 'package:movia_app/movies/domain/usecases/get_top_rated_movies_usecase.dart';
 import 'package:movia_app/movies/presentation/controller/bloc/moivess_bloc.dart';
@@ -22,8 +26,19 @@ class ServicesLocater {
     // Use Case
 
        sl.registerLazySingleton( () => GetNowPlayingMoviesUsecase(baseMovieRepository: sl()) ) ;
+
        sl.registerLazySingleton( () => GetPopularMoviesUsecase(baseMovieRepository: sl()) ) ;
        sl.registerLazySingleton( () => GetTopRatedMoviesUsecase(baseMovieRepository: sl()) ) ;
+
+
+
+
+      sl.registerLazySingleton( () => GetMovieDetialsUseCase (baseMovieDetailsRepository:sl()  ) ) ;
+
+      sl.registerLazySingleton<BaseMovieDetailsRepository>(  () => DetailsRepository (baseDetailsRemoteDataSource:  sl()  ) ) ;
+     sl.registerLazySingleton<BaseDetailsRemoteDataSource>( () => DetailsRemoteDataSource ( ) ) ;
+
+
 
 
     // Repository 

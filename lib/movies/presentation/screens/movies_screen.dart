@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movia_app/core/services/services_locater.dart';
+import 'package:movia_app/movies/data/datasource/details_remote_data_source.dart';
+import 'package:movia_app/movies/data/repository/details_repository.dart';
+import 'package:movia_app/movies/domain/repository/base_movie_details.dart';
+import 'package:movia_app/movies/domain/usecases/get_movie_detials.dart';
 import 'package:movia_app/movies/presentation/controller/bloc/moivess_bloc.dart';
 import 'package:movia_app/movies/presentation/screens/widgets/now_playing_movie.dart';
 import 'package:movia_app/movies/presentation/screens/widgets/popular_movie.dart';
