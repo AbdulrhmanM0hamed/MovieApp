@@ -10,12 +10,14 @@ class Detials  extends Equatable{
   final String vote_average ; 
   final int runtime ;
   final List<Genres> genres;
+  final String release_date ; 
 
- const Detials({required this.poster_path, required this.id, required this.title, required this.overview, required this.vote_average, required this.runtime, required this.genres}); 
+ const Detials({ required this.release_date, required this.poster_path, required this.id, required this.title, required this.overview, required this.vote_average, required this.runtime, required this.genres}); 
 
 
   @override
   List<Object?> get props => [
+    release_date,
     poster_path, 
     id, 
     title,
@@ -23,5 +25,6 @@ class Detials  extends Equatable{
     vote_average,
     runtime,
     genres
+    
   ] ;
 }

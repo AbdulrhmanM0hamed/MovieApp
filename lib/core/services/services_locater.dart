@@ -9,6 +9,7 @@ import 'package:movia_app/movies/domain/repository/base_movie_repository.dart';
 import 'package:movia_app/movies/domain/usecases/get_movie_detials.dart';
 import 'package:movia_app/movies/domain/usecases/get_popular_movies_usecase.dart';
 import 'package:movia_app/movies/domain/usecases/get_top_rated_movies_usecase.dart';
+import 'package:movia_app/movies/presentation/controller/bloc/bloc/movie_details_bloc.dart';
 import 'package:movia_app/movies/presentation/controller/bloc/moivess_bloc.dart';
 
 import '../../movies/domain/usecases/get_now_playing_movies_usecase.dart';
@@ -21,6 +22,8 @@ class ServicesLocater {
 
     
      sl.registerFactory( () => MoivessBloc(sl() , sl() , sl())) ;
+    sl.registerFactory( () => MovieDetailsBloc(sl())) ;
+
 
 
     // Use Case
@@ -34,9 +37,8 @@ class ServicesLocater {
 
 
       sl.registerLazySingleton( () => GetMovieDetialsUseCase (baseMovieDetailsRepository:sl()  ) ) ;
-
       sl.registerLazySingleton<BaseMovieDetailsRepository>(  () => DetailsRepository (baseDetailsRemoteDataSource:  sl()  ) ) ;
-     sl.registerLazySingleton<BaseDetailsRemoteDataSource>( () => DetailsRemoteDataSource ( ) ) ;
+      sl.registerLazySingleton<BaseDetailsRemoteDataSource>( () => DetailsRemoteDataSource ( ) ) ;
 
 
 

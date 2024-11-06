@@ -2,7 +2,8 @@ import 'package:movia_app/movies/domain/entities/movie.dart';
 
 class MovieModel extends Movie {
   const MovieModel(
-      {required super.id,
+      {required super.poster_path ,
+        required super.id,
       required super.title,
       required super.backdropPath,
       required super.genderIds,
@@ -11,6 +12,7 @@ class MovieModel extends Movie {
       required super.releaseDate});
 
   factory MovieModel.fromJson(Map<String, dynamic> json) => MovieModel(
+     poster_path: json["poster_path"],
       id: json["id"],
       title: json["title"],
       backdropPath: json["backdrop_path"],

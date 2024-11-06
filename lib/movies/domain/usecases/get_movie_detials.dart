@@ -4,7 +4,7 @@ import 'package:movia_app/core/utils/usecase.dart';
 import 'package:movia_app/movies/domain/entities/detials.dart';
 import 'package:movia_app/movies/domain/repository/base_movie_details.dart';
 
-class GetMovieDetialsUseCase {
+class GetMovieDetialsUseCase  {
       final BaseMovieDetailsRepository baseMovieDetailsRepository ;
 
   GetMovieDetialsUseCase({required this.baseMovieDetailsRepository});

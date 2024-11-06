@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movia_app/core/network/api_constant.dart';
+
 import 'package:movia_app/movies/presentation/controller/bloc/moivess_bloc.dart';
 import 'package:movia_app/movies/presentation/controller/bloc/moivess_state.dart';
+import 'package:movia_app/movies/presentation/screens/movie_detail_screen.dart';
 
 class NowPlayingMovie extends StatelessWidget {
   const NowPlayingMovie({Key? key}) : super(key: key);
@@ -10,9 +12,10 @@ class NowPlayingMovie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MoivessBloc, MoivessState>(
-      buildWhen: (previous, current) => previous is MoivessNowPlayingSuccess != current is MoivessNowPlayingSuccess,
+      buildWhen: (previous, current) =>
+          previous is MoivessNowPlayingSuccess !=
+          current is MoivessNowPlayingSuccess,
       builder: (context, state) {
-        
         if (state is MoivessNowPlayingSuccess) {
           return Container(
             height: 400,
@@ -21,15 +24,24 @@ class NowPlayingMovie extends StatelessWidget {
               itemBuilder: (context, index) {
                 final movie = state.movies[index];
                 return GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                     
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MovieDetailScreen(id: state.movies[index].id,),
+                      ),
+                    );
+ 
+}, 
                   child: Stack(
                     children: [
                       Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: NetworkImage(
-                                ApiConstant.imageUrl(movie.backdropPath)),
-                            fit: BoxFit.cover,
+                                ApiConstant.imageUrl(movie.poster_path)),
+                            fit: BoxFit.fill,
                           ),
                         ),
                       ),

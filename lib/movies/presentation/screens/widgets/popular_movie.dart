@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movia_app/core/network/api_constant.dart';
-import 'package:movia_app/core/utils/dummy.dart';
+import 'package:movia_app/core/services/services_locater.dart';
+import 'package:movia_app/movies/presentation/controller/bloc/bloc/movie_details_bloc.dart';
 import 'package:movia_app/movies/presentation/controller/bloc/moivess_bloc.dart';
 import 'package:movia_app/movies/presentation/controller/bloc/moivess_state.dart';
+import 'package:movia_app/movies/presentation/screens/movie_detail_screen.dart';
 
 class PopularMoviesSection extends StatelessWidget {
   final VoidCallback onSeeAll;
@@ -59,13 +61,15 @@ class PopularMoviesSection extends StatelessWidget {
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          itemCount: moviesList.length,
+          itemCount: state.movies.length,
           itemBuilder: (context, index) {
-           
+            
             return Container(
               padding: const EdgeInsets.only(right: 8.0),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+
+                },
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.network(
